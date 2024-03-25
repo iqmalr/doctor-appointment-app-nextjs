@@ -43,3 +43,15 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Configuring Clerk
+
+Make sure you have signed up and created a project in the Clerk Dashboard. After that, you'll need to copy your API Key and Site ID into this project. Refer to the Clerk documentation for further information.
+
+## Contributing
+
+If you'd like to contribute to this project, feel free to open an issue or create a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
