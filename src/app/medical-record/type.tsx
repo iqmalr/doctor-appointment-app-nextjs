@@ -12,6 +12,7 @@ export interface MedicalRecord {
     ComplicationDiagnosis: string;
     ProcedureName: string;
     AnesthesiaType: string;
+    Address: string;
     DischargeCondition: string;
     DischargeMethod: string;
     DischargeStatus: string;

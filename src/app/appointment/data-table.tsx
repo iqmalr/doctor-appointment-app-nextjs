@@ -22,6 +22,7 @@ import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
+  Updater,
   VisibilityState,
   flexRender,
   getCoreRowModel,
@@ -57,9 +58,11 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
     },
-    onSortingChange: (updater) => {
-      setSortingState(updater);
-      const sort = updater[0];
+    onSortingChange: (updater: Updater<SortingState>) => {
+      const newSorting =
+        typeof updater === "function" ? updater(sorting) : updater;
+      setSortingState(newSorting);
+      const sort = newSorting[0];
       if (sort) {
         const sortString = `${sort.id}:${sort.desc ? "desc" : "asc"}`;
         setSorting(sortString);

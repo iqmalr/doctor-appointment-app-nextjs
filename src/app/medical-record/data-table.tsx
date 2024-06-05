@@ -21,6 +21,7 @@ import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
+  Updater,
   VisibilityState,
   flexRender,
   getCoreRowModel,
@@ -59,9 +60,11 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
     },
-    onSortingChange: (updater) => {
-      setSortingState(updater);
-      const sort = updater[0];
+    onSortingChange: (updater: Updater<SortingState>) => {
+      const newSorting =
+        typeof updater === "function" ? updater(sorting) : updater;
+      setSortingState(newSorting);
+      const sort = newSorting[0];
       if (sort) {
         const sortString = `${sort.id}:${sort.desc ? "desc" : "asc"}`;
         setSorting(sortString);
@@ -81,7 +84,7 @@ export function DataTable<TData, TValue>({
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const term = event.target.value;
     setSearchTerm(term);
-    setMedicalRecordIdFilter(term); // Tetap menggunakan setMedicalRecordIdFilter untuk mengatur filter nama
+    setMedicalRecordIdFilter(term);
   };
 
   return (

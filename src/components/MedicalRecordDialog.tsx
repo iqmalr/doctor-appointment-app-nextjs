@@ -1,5 +1,6 @@
 // MedicalRecordDialog.tsx
-import { MedicalRecord } from "@/app/test/type"; // Import the MedicalRecord type
+
+import { MedicalRecord } from "@/app/medical-record/type";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

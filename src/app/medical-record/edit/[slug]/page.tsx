@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MedicalRecord } from "../../type";
+import { MedicalRecord } from "../../type"; // Assuming you have a type defined for MedicalRecord
 
 const MedicalRecordDetailPage = () => {
   const params = useParams();
@@ -15,8 +15,9 @@ const MedicalRecordDetailPage = () => {
   const [medicalRecord, setMedicalRecord] = useState<MedicalRecord | null>(
     null
   );
-  const [editMedicalRecord, setEditMedicalRecord] =
-    useState<Partial<MedicalRecord> | null>(null);
+  const [editMedicalRecord, setEditMedicalRecord] = useState<
+    MedicalRecord["attributes"] | null
+  >(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const MedicalRecordDetailPage = () => {
       if (editMedicalRecord) {
         const response = await axios.put(
           `https://strapi-production-946a.up.railway.app/api/medical-records/${slug}`,
-          { data: editMedicalRecord }
+          { data: { attributes: editMedicalRecord } }
         );
         console.log("Response from server:", response.data);
         console.log(
@@ -58,7 +59,7 @@ const MedicalRecordDetailPage = () => {
           response.data.data.attributes
         );
         // Uncomment the following line to redirect after a successful update
-        // router.push("/medical-record");
+        router.push("/medical-record");
       }
     } catch (err: any) {
       console.error("Error during PUT request:", err);

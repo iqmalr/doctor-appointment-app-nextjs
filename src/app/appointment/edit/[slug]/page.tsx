@@ -13,8 +13,9 @@ const AppointmentDetailPage = () => {
   const router = useRouter();
   const { slug } = params;
   const [appointment, setAppointment] = useState<Appointment | null>(null);
-  const [editAppointment, setEditAppointment] =
-    useState<Partial<Appointment> | null>(null);
+  const [editAppointment, setEditAppointment] = useState<
+    Appointment["attributes"] | null
+  >(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -48,12 +49,12 @@ const AppointmentDetailPage = () => {
       if (editAppointment) {
         const response = await axios.put(
           `https://strapi-production-946a.up.railway.app/api/appointments/${slug}`,
-          { data: editAppointment }
+          { data: { attributes: editAppointment } }
         );
         console.log("Response from server:", response.data);
         console.log("Updated Appointment Data:", response.data.data.attributes);
         // Uncomment the following line to redirect after a successful update
-        // router.push("/appointments");
+        router.push("/appointments");
       }
     } catch (err: any) {
       console.error("Error during PUT request:", err);

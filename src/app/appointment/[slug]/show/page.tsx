@@ -1,11 +1,11 @@
 // src/app/medical-record/[slug]/show/page.tsx
 "use client";
 
+import { MedicalRecord } from "@/app/medical-record/type";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MedicalRecord } from "../../type";
 
 const MedicalRecordDetailPage = () => {
   const params = useParams();
