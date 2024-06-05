@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { auth, currentUser } from "@clerk/nextjs";
 
 export default async function DashboardPage() {
@@ -21,6 +22,7 @@ export default async function DashboardPage() {
           <span className="font-semibold">Email:</span>{" "}
           {user.emailAddresses[0].emailAddress}
         </li>
+        <Button>Click me</Button>
       </ul>
     </div>
   );
